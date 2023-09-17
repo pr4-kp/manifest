@@ -1,27 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-import MyDialog from './components/MyDialog.js';
-import React, {useState, useEffect } from 'react'
+import "./index.css";
+import Venues from "./pages/Venues.js";
+import Layout from "./pages/Layout";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home.js";
 
 function App() {
-  const [data, setData] = useState([{}])
-
-  useEffect(() => {
-    fetch("/hello").then(
-      res => res.json()
-    ).then(
-      data=> {
-        setData(data)
-        console.log(data)
-      }
-    )
-  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <MyDialog isOpen={true} />
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}></Route>
+          <Route index element={<Home />}></Route>
+          <Route path="venues" element={<Venues />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
